@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="78b379ba-facb-4227-a554-d9276f24e7f0" name="Default Changelist" comment="" />
+    <list default="true" id="78b379ba-facb-4227-a554-d9276f24e7f0" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSB/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSB/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSB/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSB/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,11 +69,18 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1617207164224</updated>
-      <workItem from="1617207191979" duration="574000" />
+      <workItem from="1617207191979" duration="973000" />
+      <workItem from="1617634555352" duration="1326000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="525" y="349" width="670" height="676" key="search.everywhere.popup" timestamp="1617634905305">
+      <screen x="0" y="25" width="3440" height="1415" />
+    </state>
+    <state x="525" y="349" width="670" height="676" key="search.everywhere.popup/0.25.3440.1415@0.25.3440.1415" timestamp="1617634905305" />
   </component>
 </project>
