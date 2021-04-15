@@ -8,6 +8,7 @@ class Course(models.Model):
     number = models.IntegerField()
     semester = models.TextField()
     department = models.TextField()
+    credits = models.IntegerField(default=3)
 
     def __str__(self):
         return self.name
@@ -46,6 +47,7 @@ class Requires(models.Model):
     did = models.ForeignKey(Degree, on_delete=models.CASCADE)
     rid = models.ForeignKey(Requirement, on_delete=models.CASCADE)
     quantity = models.IntegerField()
+    credits = models.IntegerField(blank=True, default=0)
 
     def __str__(self):
         return f'Degree: {self.did} | Requirement: {self.rid}'
