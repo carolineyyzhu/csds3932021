@@ -1,0 +1,26 @@
+body {
+    background: lightgrey;
+}
+.navbar{
+  background-color: #EFEFEF;
+}
+h4{
+  color: #302E3B;
+}
+h3{
+  color: #302E3B;
+}
+.navbar-nav ul li{
+  display: inline;
+  padding-left: 25px;
+}
+.nav-item {
+  display: inline;
+  font-weight: bold;
+}
+.navbar-list{
+  padding-top: 18px;
+}
+table, th, td {
+  border: 1px solid black;
+}

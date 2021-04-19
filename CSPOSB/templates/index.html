@@ -1,10 +1,260 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-    <h1> This is the home page</h1>
-</body>
-</html>
+{%extends "base.html" %}
+
+{% block title%} CSPOSB {% endblock %}
+
+{% block content%}
+    <h1 class="text-center">  Computer Science Program of Study Builder  </h1>
+    <br>
+    <!-- Main Container-->
+    <div class="container">
+        <div class="row">
+            <div class="'col-md-2"></div>
+            <div class="'col-md-8" style="body:white">
+                <h3>Undergraduate Programs</h3>
+                <p>The CS program offers programs leading to degrees in:</p>
+                <li>Bachelor of Science in Computer science</li>
+                <li>Bachelor of Arts in Computer Science</li>
+                <p>These programs provide students with a strong background in the fundamentals of mathematics and science. Students can use their technical and open electives to pursue concentrations in software engineering, algorithms, artificial intelligence, databases, data mining, bioinformatics, security, computer systems, and computer networks. In addition to an excellent technical education, all students in the department are exposed to societal issues, ethics, professionalism, and have the opportunity to develop leadership and creativity skills.
+                </p>
+                <hr>
+                <h4>Mission</h4>
+                <p>The mission of the Bachelor of Science degree program in Computer Science and the Bachelor of Arts degree program in Computer Science is to graduate students who have fundamental technical knowledge of their profession and the requisite technical breadth and communications skills to become leaders in creating the new techniques and technologies which will advance the field of computer science and its application to other disciplines.
+                </p>
+                <h4>Program Educational Objectives</h4>
+                <li>To educate and train students in the fundamentals of computer science and mathematics</li>
+                <li>To educate students with an understanding of real-world computing needs</li>
+                <li>To train students to work effectively, professionally and ethically in computing-related professions</li>
+                <p></p>
+                <h4>Student Outcomes</h4>
+                <p>As preparation for achieving the above educational objectives, the BS and BA degree programs in Computer Science are designed so that Bachelor of Science students attain:</p>
+                <li>Analyze a complex computing problem and to apply principles of computing and other relevant disciplines to identify solutions.</li>
+                <li>Design, implement, and evaluate a computing-based solution to meet a  given set of computing requirements in the context of the program’s discipline.</li>
+                <li>Communicate effectively in a variety of professional contexts.</li>
+                <li>Recognize professional responsibilities and make informed judgments in computing practice based on legal and ethical principles.</li>
+                <li>Function effectively as a member or leader of a team engaged in activities appropriate to the program’s discipline.</li>
+                <li>Apply computer science theory and software development fundamentals to produce computing-based solutions.</li>
+                <p>Core and breadth courses provide our students with the flexibility to work across many disciplines and prepare them for a variety of professions. Our curriculum is designed to teach fundamental skills and knowledge needed by all CS graduates while providing the greatest flexibility in selecting topics. Students are also required to develop depth in at least one of the following technical areas: software engineering; algorithms and theory; computer systems, networks, and security; databases and data mining; bioinformatics; or artificial intelligence.</p>
+                <h4>Bachelor of Science in Computer Science</h4>
+                <p>The Bachelor of Science degree program in Computer Science is designed to give a student a strong background in the fundamentals of mathematics and computer science. The curriculum is designed according to the latest ACM/IEEE computer science curriculum guidelines. A graduate of this program should be able to use these fundamentals to analyze and evaluate software systems and the underlying abstractions upon which they are based. A graduate should also be able to design and implement software systems which are state-of-the-art solutions to a variety of computing problems; this includes problems which are sufficiently complex to require the evaluation of design alternatives and engineering trade-offs. In addition to these program-specific objectives, all students in the Case School of Engineering are exposed to societal issues, professionalism, and are provided opportunities to develop leadership skills. The Bachelor of Science degree program in Computer Science is accredited by the Computing Accreditation Commission of ABET, http://www.abet.org/.</p>
+                <h4>Bachelor of Arts in Computer Science</h4>
+                <p>The Bachelor of Arts degree program in Computer Science is a combination of a liberal arts program and a computing major. It is a professional program in the sense that graduates can be employed as computer professionals, but it is less technical than the Bachelor of Science degree program in Computer Science. This degree is particularly suitable for students with a wide range of interests. For example, students can major in another discipline in addition to computer science and routinely complete all of the requirements for the double major in a 4 year period. This is possible because over a third of the courses in the program are open electives. Furthermore, if a student is majoring in computer science and a second technical field such as mathematics or physics many of the technical electives will be accepted for both majors. Another example of the utility of this program is that it routinely allows students to major in computer science and take all of the pre-med courses in a four-year period.</p>
+                <h4>Major in Computer Science (BS and BA)</h4>
+                <p><strong>BS Degree.</strong>  Each student is required to complete a total of 20 computer science and computer science related courses, totaling at least 63 credits. The 20 courses must include: all 6 core courses; at least 5 computer science breadth courses; and at least 4 courses in one of the listed computer science depth areas, including all starred courses in that area. The remaining courses needed to fulfill the 20 course requirement may come from the computer science breadth courses, courses of any computer science depth area, and up to 6 of the 20 courses may come from the list of approved technical electives with at most two group 2 courses and none from the group 3 list. Other computer science related courses not listed here may be used with prior permission from the student’s academic advisor. Some courses appear in more than one list. The same course may be used to satisfy multiple requirements of the core, computer science breadth and depth requirements, but courses may not be double counted for the purpose of achieving 20 separate computer science courses and 63 credits
+                </p>
+                <p><strong>BA Degree.</strong> Students are required to complete a total of 13 computer science and computer science related courses, totaling at least 42 credits. The 13 courses for a total of 42 credits must include all 6 core courses and at least 3 computer science breadth courses.  The remaining 4 courses may come from the computer science breadth courses, any course listed as a computer science depth course for the BS, plus at most 3 courses from either the group 1 or the group 3 list of approved technical electives (with no course coming from group 2). There is no depth requirement for the BA degree.
+                </p>
+                <hr>
+                <h4>Major Requirements</h4>
+                <table style="width: 100%">
+                    <tr>
+                        <th><strong>B.S.</strong></th>
+                    </tr>
+                    <tr>
+                        <th>Course</th>
+                        <th>Name</th>
+                        <th>Credits</th>
+                    </tr>
+                    <tr>
+                        <th>MATH 121</th>
+                        <th>Calculus for Science and Engineering I</th>
+                        <th>4</th>
+                    </tr>
+                    <tr>
+                        <th>MATH 122</th>
+                        <th>Calculus for Science and Engineering II</th>
+                        <th>4</th>
+                    </tr>
+                    <tr>
+                        <th>or MATH 124</th>
+                        <th>Calculus II</th>
+                        <th>4</th>
+                    </tr>
+                    <tr>
+                        <th>MATH 223</th>
+                        <th>Calculus for Science and Engineering III</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>MATH 227</th>
+                        <th>Calculus III</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>MATH 201</th>
+                        <th>Introduction to Linear Algebra for Applications</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>or MATH 307</th>
+                        <th>Linear Algebra</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>CHEM 111</th>
+                        <th>Principles of Chemistry for Engineers</th>
+                        <th>4</th>
+                    </tr>
+                    <tr>
+                        <th>PHYS 121</th>
+                        <th>General Physics I - Mechanics</th>
+                        <th>4</th>
+                    </tr>
+                    <tr>
+                        <th>PHYS 122</th>
+                        <th>General Physics II - Electricity and Magnetism</th>
+                        <th>4</th>
+                    </tr>
+                    <tr>
+                        <th>ENGR 398</th>
+                        <th>Professional Communication for Engineers</th>
+                        <th>1</th>
+                    </tr>
+                    <tr>
+                        <th>ENGL 398</th>
+                        <th>Professional Communication for Engineers</th>
+                        <th>2</th>
+                    </tr>
+                    <tr>
+                        <th><strong>B.A.</strong></th>
+                    </tr>
+                    <tr>
+                        <th>MATH 125</th>
+                        <th>Math and Calculus Applications for Life, Managerial, and Social Sci I</th>
+                        <th>4</th>
+                    </tr>
+                    <tr>
+                        <th>MATH 126</th>
+                        <th>Math and Calculus Applications for Life, Managerial, and Social Sci II</th>
+                        <th>4</th>
+                    </tr>
+                </table>
+                <h4>Computer Science Core Requirements</h4>
+                <p>Both BS and BA students are required to complete the following 6 courses.</p>
+                <table style="width: 100%">
+                    <tr>
+                        <th>Course</th>
+                        <th>Name</th>
+                        <th>Credits</th>
+                    </tr>
+                    <tr>
+                        <th>CSDS 132</th>
+                        <th>Introduction to Programming in Java</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>CSDS 233</th>
+                        <th>Introduction to Data Structures</th>
+                        <th>4</th>
+                    </tr>
+                    <tr>
+                        <th>CSDS 281</th>
+                        <th>Logic Design and Computer Organization</th>
+                        <th>4</th>
+                    </tr>
+                    <tr>
+                        <th>CSDS 302</th>
+                        <th>Discrete Mathematics</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>CSDS 310</th>
+                        <th>Algorithms</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>CSDS 395</th>
+                        <th>Senior Project in Computer Science</th>
+                        <th>4</th>
+                    </tr>
+                </table>
+
+                <h4>Computer Science Breadth Requirements</h4>
+                <p>BS students are required to complete at least 5 of the 7 following computer science breadth courses. BA students are required to complete at least 3 of 7.</p>
+                <table style="width: 100%">
+                    <tr>
+                        <th>Course</th>
+                        <th>Name</th>
+                        <th>Credits</th>
+                    </tr>
+                    <tr>
+                        <th>CSDS 314</th>
+                        <th>Computer Architecture</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>CSDS 325</th>
+                        <th>Computer Networks I	</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>CSDS 338</th>
+                        <th>Intro to Operating Systems and Concurrent Programming</th>
+                        <th>4</th>
+                    </tr>
+                    <tr>
+                        <th>CSDS 341</th>
+                        <th>Introduction to Database Systems</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>CSDS 345</th>
+                        <th>Programming Language Concepts</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>CSDS 391</th>
+                        <th>Introduction to Artificial Intelligence</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>CSDS 393</th>
+                        <th>Software Engineering</th>
+                        <th>3</th>
+                    </tr>
+                </table>
+                <h4> Statistics Requirement</h4>
+                <p> students are required to complete a statistics elective.</p>
+                <p>One Statistics elective may be chosen from:</p>
+                <table>
+                    <tr>
+                        <th>MATH 380</th>
+                        <th>Introduction to Probability	</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>STAT 312</th>
+                        <th>Basic Statistics for Engineering and Science</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>STAT 313</th>
+                        <th>Statistics for Experimenters</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>STAT 332</th>
+                        <th>Statistics for Signal Processing</th>
+                        <th>3</th>
+                    </tr>
+                    <tr>
+                        <th>STAT 333</th>
+                        <th>Uncertainty in Engineering and Science</th>
+                        <th>3</th>
+                    </tr>
+                </table>
+                <h4>Computer Science Depth Requirements</h4>
+                <p>Students pursuing the BS degree must demonstrate a depth of competence in one of the technical areas listed below.  There is no depth requirement for the BA degree.  To complete the depth requirement, students must complete at least four courses in one of the depth areas, including all starred courses.  Recommended general background courses are listed following each area where applicable. </p>
+                <table style="width: 100%">
+
+                </table>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div class="'col-md-2"></div>
+        </div>
+
+
+    </div>
+
+{% endblock %}
