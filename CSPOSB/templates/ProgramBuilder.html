@@ -4,4 +4,22 @@
 
 {% block content%}
     <h1 class="text-center">  PoSB  </h1>
+    <p>this allows you to build a 4 year plan and then certify that it meets degree requirements.</p>
+    <form action = "posb" method="post">
+        {% for cid, name, numberDept in classes %}
+            <label for="a">{{numberDept}}</label>
+            <input id="a" type="checkbox" {{ name }}>
+            <select id="sem" name="Semester">
+                <option value="spring">Spring</option>
+                <option value="fall">Fall</option>
+            </select>
+            <select id="year" name="Year">
+                <option value="1">1st</option>
+                <option value="2">2nd</option>
+                <option value="3">3rd</option>
+                <option value="4">4th</option>
+            </select>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
 {% endblock %}
