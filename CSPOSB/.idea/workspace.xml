@@ -3,7 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="78b379ba-facb-4227-a554-d9276f24e7f0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSPOSB/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSPOSB/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/ProgramBuilder.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ProgramBuilder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +82,8 @@
       <workItem from="1618844766391" duration="1642000" />
       <workItem from="1618849259713" duration="12030000" />
       <workItem from="1619280313066" duration="1249000" />
-      <workItem from="1619536659091" duration="1666000" />
+      <workItem from="1619536659091" duration="2058000" />
+      <workItem from="1619555448165" duration="809000" />
     </task>
     <servers />
   </component>
