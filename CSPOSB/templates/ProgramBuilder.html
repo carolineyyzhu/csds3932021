@@ -4,22 +4,161 @@
 
 {% block content%}
     <h1 class="text-center">  PoSB  </h1>
-    <p>this allows you to build a 4 year plan and then certify that it meets degree requirements.</p>
-    <form action = "posb" method="post">
-        {% for cid, name, numberDept in classes %}
-            <label for="a">{{numberDept}}</label>
-            <input id="a" type="checkbox" {{ name }}>
-            <select id="sem" name="Semester">
-                <option value="spring">Spring</option>
-                <option value="fall">Fall</option>
-            </select>
-            <select id="year" name="Year">
-                <option value="1">1st</option>
-                <option value="2">2nd</option>
-                <option value="3">3rd</option>
-                <option value="4">4th</option>
-            </select>
-        {% endfor %}
-        <input type="submit" value="Submit">
-    </form>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" style="background: whitesmoke; padding: 15px; border-radius: 10px">
+            <p>This allows you to build a 4 year plan and then certify that it meets degree requirements.</p>
+            <div id="stylized">
+                <form action = "#" method="post">
+                {% csrf_token %}
+                <button type="button" class="collapsible">CS Core</button>
+                <div class="content">
+                    {% for cid, name, numberDept in coreClasses %}
+                        <ul style="list-style-type:none; text-align: center">
+                            <li>
+                                <label for="a">{{numberDept}}</label>
+                                <input id="a" type="checkbox" {{ name }}>
+                                <select id="sem" name="Semester">
+                                    <option value="spring">Spring</option>
+                                    <option value="fall">Fall</option>
+                                </select>
+                                <select id="year" name="Year">
+                                    <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="4">4th</option>
+                                </select>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </div>
+                <button type="button" class="collapsible">CS Breadth</button>
+                <div class="content">
+                    {% for cid, name, numberDept in breadthClasses %}
+                        <ul style="list-style-type:none; text-align: center">
+                            <li>
+                                <label for="a">{{numberDept}}</label>
+                                <input id="a" type="checkbox" {{ name }}>
+                                <select id="sem" name="Semester">
+                                    <option value="spring">Spring</option>
+                                    <option value="fall">Fall</option>
+                                </select>
+                                <select id="year" name="Year">
+                                    <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="4">4th</option>
+                                </select>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </div>
+                <button type="button" class="collapsible">CS Depth</button>
+                <div class="content">
+                    {% for cid, name, numberDept in depthClasses %}
+                        <ul style="list-style-type:none; text-align: center">
+                            <li>
+                                <label for="a">{{numberDept}}</label>
+                                <input id="a" type="checkbox" {{ name }}>
+                                <select id="sem" name="Semester">
+                                    <option value="spring">Spring</option>
+                                    <option value="fall">Fall</option>
+                                </select>
+                                <select id="year" name="Year">
+                                    <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="4">4th</option>
+                                </select>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </div>
+                <button type="button" class="collapsible">CS Tech Elective</button>
+                <div class="content">
+                    {% for cid, name, numberDept in techElectiveClasses %}
+                        <ul style="list-style-type:none; text-align: center">
+                            <li>
+                                <label for="a">{{numberDept}}</label>
+                                <input id="a" type="checkbox" {{ name }}>
+                                <select id="sem" name="Semester">
+                                    <option value="spring">Spring</option>
+                                    <option value="fall">Fall</option>
+                                </select>
+                                <select id="year" name="Year">
+                                    <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="4">4th</option>
+                                </select>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </div>
+                <button type="button" class="collapsible">General</button>
+                <div class="content">
+                    {% for cid, name, numberDept in generalBreadthClasses %}
+                        <ul style="list-style-type:none; text-align: center">
+                            <li>
+                                <label for="a">{{numberDept}}</label>
+                                <input id="a" type="checkbox" {{ name }}>
+                                <select id="sem" name="Semester">
+                                    <option value="spring">Spring</option>
+                                    <option value="fall">Fall</option>
+                                </select>
+                                <select id="year" name="Year">
+                                    <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="4">4th</option>
+                                </select>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </div>
+                <button type="button" class="collapsible">Sages</button>
+                <div class="content">
+                    {% for cid, name, numberDept in sagesClasses %}
+                        <ul style="list-style-type:none; text-align: center">
+                            <li>
+                                <label for="a">{{numberDept}}</label>
+                                <input id="a" type="checkbox" {{ name }}>
+                                <select id="sem" name="Semester">
+                                    <option value="spring">Spring</option>
+                                    <option value="fall">Fall</option>
+                                </select>
+                                <select id="year" name="Year">
+                                    <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="4">4th</option>
+                                </select>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                </div>
+                <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+</script>
 {% endblock %}
+
