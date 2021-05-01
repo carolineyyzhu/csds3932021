@@ -9,12 +9,14 @@ def index(request):
     context = {}
     return render(request, 'index.html', context)
 
+
 @csrf_exempt
 def posb(request):
     cid = []
     name = []
     numberDept = []
 
+    # Gets all classes by requirement for display on schedule builder form
     # Breadth
     breadthClasses = Course.objects.all().select_related().filter(fulfills__rid=2)
     for courses in breadthClasses:
@@ -23,7 +25,7 @@ def posb(request):
         temp = courses.department + str(courses.number)
         numberDept.append(temp)
     breadthToHTML1 = [cid, name, numberDept]
-    cid =[]
+    cid = []
     name = []
     numberDept = []
     breadthToHTML = zip(breadthToHTML1[0], breadthToHTML1[1], breadthToHTML1[2])
@@ -36,7 +38,7 @@ def posb(request):
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
     depthToHTML1 = [cid, name, numberDept]
-    cid =[]
+    cid = []
     name = []
     numberDept = []
     depthToHTML = zip(depthToHTML1[0], depthToHTML1[1], depthToHTML1[2])
@@ -49,7 +51,7 @@ def posb(request):
         temp = courses.department + str(courses.number)
         numberDept.append(temp)
     coreToHTML1 = [cid, name, numberDept]
-    cid =[]
+    cid = []
     name = []
     numberDept = []
     coreToHTML = zip(coreToHTML1[0], coreToHTML1[1], coreToHTML1[2])
@@ -62,7 +64,7 @@ def posb(request):
         temp = courses.department + str(courses.number)
         numberDept.append(temp)
     generalBreadthToHTML1 = [cid, name, numberDept]
-    cid =[]
+    cid = []
     name = []
     numberDept = []
     generalBreadthToHTML = zip(generalBreadthToHTML1[0], generalBreadthToHTML1[1], generalBreadthToHTML1[2])
@@ -75,7 +77,7 @@ def posb(request):
         temp = courses.department + str(courses.number)
         numberDept.append(temp)
     techElectiveToHTML1 = [cid, name, numberDept]
-    cid =[]
+    cid = []
     name = []
     numberDept = []
     techElectiveToHTML = zip(techElectiveToHTML1[0], techElectiveToHTML1[1], techElectiveToHTML1[2])
@@ -89,10 +91,55 @@ def posb(request):
         numberDept.append(temp)
     sagesToHTML1 = [cid, name, numberDept]
     sagesToHTML = zip(sagesToHTML1[0], sagesToHTML1[1], sagesToHTML1[2])
+    # Schedule has been submitted
+    if request.method == "POST":
+        form = request.POST.get("builder")
+        data = request.POST.copy()
+        semester = data.getlist("Semester")
+        year = data.getlist("Year")
+        classes = data.getlist('Classes')
 
+        toDelete = []
+        removeEmpty=[]
+        for i in range(0,len(classes)):
+            if classes[i] != "empty":
+                removeEmpty.append(i-1)
+        removeEmpty.reverse()
+        for index in removeEmpty:
+            classes.pop(index)
+        for i in range(0, len(classes)):
+            if classes[i] == "empty":
+                toDelete.append(i)
+        toDelete.reverse()
+        for index in range(0, len(toDelete)):
+            semester.pop(toDelete[index])
+            year.pop(toDelete[index])
+            classes.pop(toDelete[index])
+        f1, s1, f2, s2, f3, s3, f4, s4 = ([],)*8
+        for i in range(0, len(classes)):
+            if semester == "spring":
+                if year == 1:
+                    s1.append(classes[i])
+                if year == 4:
+                    s2.append(classes[i])
+                if year == 3:
+                    s3.append(classes[i])
+                else:
+                    s4.append(classes[i])
+            else:
+                if year == 1:
+                    f1.append(classes[i])
+                if year == 4:
+                    f2.append(classes[i])
+                if year == 3:
+                    f3.append(classes[i])
+                else:
+                    f4.append(classes[i])
+    print(s1)
     context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
                "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
-               "techElectiveClasses": techElectiveToHTML}
+               "techElectiveClasses": techElectiveToHTML, "s1": s1, "s2": s2, "s3": s3, "s4": s4, "f1": f1, "f2": f2,
+               "f3": f3, "f4": f4}
 
     return render(request, 'ProgramBuilder.html', context)
 

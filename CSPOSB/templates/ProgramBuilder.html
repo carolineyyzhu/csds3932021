@@ -9,7 +9,7 @@
         <div class="col-md-8" style="background: whitesmoke; padding: 15px; border-radius: 10px">
             <p>This allows you to build a 4 year plan and then certify that it meets degree requirements.</p>
             <div id="stylized">
-                <form action = "#" method="post">
+                <form action = "#" method="post" name = "builder">
                 {% csrf_token %}
                 <button type="button" class="collapsible">CS Core</button>
                 <div class="content">
@@ -17,7 +17,8 @@
                         <ul style="list-style-type:none; text-align: center">
                             <li>
                                 <label for="a">{{numberDept}}</label>
-                                <input id="a" type="checkbox" {{ name }}>
+                                <input id="a" name="Classes" type="hidden" value="empty">
+                                <input id="a" name="Classes" type="checkbox" value="{{ numberDept }}" {{ name }}>
                                 <select id="sem" name="Semester">
                                     <option value="spring">Spring</option>
                                     <option value="fall">Fall</option>
@@ -38,7 +39,8 @@
                         <ul style="list-style-type:none; text-align: center">
                             <li>
                                 <label for="a">{{numberDept}}</label>
-                                <input id="a" type="checkbox" {{ name }}>
+                                <input type="hidden" name="Classes" value="empty">
+                                <input id="a" name = "Classes" type="checkbox" value="{{ numberDept }}" {{ name }}>
                                 <select id="sem" name="Semester">
                                     <option value="spring">Spring</option>
                                     <option value="fall">Fall</option>
@@ -59,7 +61,8 @@
                         <ul style="list-style-type:none; text-align: center">
                             <li>
                                 <label for="a">{{numberDept}}</label>
-                                <input id="a" type="checkbox" {{ name }}>
+                                <input type="hidden" name="Classes" value="empty">
+                                <input id="a" name = "Classes" type="checkbox" value="{{ numberDept }}" {{ name }}>
                                 <select id="sem" name="Semester">
                                     <option value="spring">Spring</option>
                                     <option value="fall">Fall</option>
@@ -80,7 +83,8 @@
                         <ul style="list-style-type:none; text-align: center">
                             <li>
                                 <label for="a">{{numberDept}}</label>
-                                <input id="a" type="checkbox" {{ name }}>
+                                <input type="hidden" name="Classes" value="empty">
+                                <input id="a" name = "Classes" type="checkbox" value="{{ numberDept }}" {{ name }}>
                                 <select id="sem" name="Semester">
                                     <option value="spring">Spring</option>
                                     <option value="fall">Fall</option>
@@ -101,7 +105,8 @@
                         <ul style="list-style-type:none; text-align: center">
                             <li>
                                 <label for="a">{{numberDept}}</label>
-                                <input id="a" type="checkbox" {{ name }}>
+                                <input type="hidden" name="Classes" value="empty">
+                                <input id="a" name = "Classes" type="checkbox" value="{{ numberDept }}" {{ name }}>
                                 <select id="sem" name="Semester">
                                     <option value="spring">Spring</option>
                                     <option value="fall">Fall</option>
@@ -122,7 +127,8 @@
                         <ul style="list-style-type:none; text-align: center">
                             <li>
                                 <label for="a">{{numberDept}}</label>
-                                <input id="a" type="checkbox" {{ name }}>
+                                <input type="hidden" name="Classes" value="empty">
+                                <input id="a" name = "Classes" type="checkbox" value="{{ numberDept }}" {{ name }}>
                                 <select id="sem" name="Semester">
                                     <option value="spring">Spring</option>
                                     <option value="fall">Fall</option>
