@@ -92,6 +92,7 @@ def posb(request):
     sagesToHTML1 = [cid, name, numberDept]
     sagesToHTML = zip(sagesToHTML1[0], sagesToHTML1[1], sagesToHTML1[2])
     # Schedule has been submitted
+    f1, s1, f2, s2, f3, s3, f4, s4 = ([],) * 8
     if request.method == "POST":
         form = request.POST.get("builder")
         data = request.POST.copy()
@@ -115,7 +116,7 @@ def posb(request):
             semester.pop(toDelete[index])
             year.pop(toDelete[index])
             classes.pop(toDelete[index])
-        f1, s1, f2, s2, f3, s3, f4, s4 = ([],)*8
+
         for i in range(0, len(classes)):
             if semester == "spring":
                 if year == 1:
@@ -135,7 +136,6 @@ def posb(request):
                     f3.append(classes[i])
                 else:
                     f4.append(classes[i])
-    print(s1)
     context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
                "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
                "techElectiveClasses": techElectiveToHTML, "s1": s1, "s2": s2, "s3": s3, "s4": s4, "f1": f1, "f2": f2,
