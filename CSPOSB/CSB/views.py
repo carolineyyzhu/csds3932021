@@ -145,5 +145,5 @@ def posb(request):
 
 
 def rchecker(request):
-    context = {}
+    context = {"fulfillsRequirements":False, "classesNeeded":None}
     return render(request, 'RequirementChecker.html', context)
