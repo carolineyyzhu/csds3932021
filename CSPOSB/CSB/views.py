@@ -92,13 +92,15 @@ def posb(request):
     sagesToHTML1 = [cid, name, numberDept]
     sagesToHTML = zip(sagesToHTML1[0], sagesToHTML1[1], sagesToHTML1[2])
     # Schedule has been submitted
-    f1, s1, f2, s2, f3, s3, f4, s4 = ['Fall Year 1'], ['Spring Year 1'], ['Fall Year 2'], ['Spring Year 2'], ['Fall Year 3'], ['Spring Year 3'], ['Fall Year 4'], ['Spring Year 4']
+    f1c, s1c, f2c, s2c, f3c, s3c, f4c, s4c = ['Fall Year 1'], ['Spring Year 1'], ['Fall Year 2'], ['Spring Year 2'], ['Fall Year 3'], ['Spring Year 3'], ['Fall Year 4'], ['Spring Year 4']
+    f1n, s1n, f2n, s2n, f3n, s3n, f4n, s4n = [''], [''], [''], [''], [''], [''], [''], ['']
     if request.method == "POST":
         form = request.POST.get("builder")
         data = request.POST.copy()
         semester = data.getlist("Semester")
         year = data.getlist("Year")
         classes = data.getlist('Classes')
+        names = data.getlist('Name')
 
         toDelete = []
         removeEmpty=[]
@@ -117,31 +119,50 @@ def posb(request):
             year.pop(toDelete[index])
             classes.pop(toDelete[index])
 
+        print(len(names))
+        print(len(classes))
+
         for i in range(0, len(classes)):
             if semester[i] == "spring":
                 if year[i] == '1':
-                    s1.append(classes[i])
+                    s1c.append(classes[i])
+                    s1n.append(names[i])
                 elif year[i] == '2':
-                    s2.append(classes[i])
+                    s2c.append(classes[i])
+                    s2n.append(names[i])
                 elif year[i] == '3':
-                    s3.append(classes[i])
+                    s3c.append(classes[i])
+                    s3n.append(names[i])
                 else:
-                    s4.append(classes[i])
+                    s4c.append(classes[i])
+                    s4n.append(names[i])
             else:
                 if year[i] == '1':
-                    f1.append(classes[i])
+                    f1c.append(classes[i])
+                    f1n.append(names[i])
                 elif year[i] == '2':
-                    f2.append(classes[i])
+                    f2c.append(classes[i])
+                    f2n.append(names[i])
                 elif year[i] == '3':
-                    f3.append(classes[i])
+                    f3c.append(classes[i])
+                    f3n.append(names[i])
                 else:
-                    f4.append(classes[i])
+                    f4c.append(classes[i])
+                    f4n.append(names[i])
 
-    sems = [f1, s1, f2, s2, f3, s3, f4, s4]
+    classes = [f1c, s1c, f2c, s2c, f3c, s3c, f4c, s4c]
+    names = [f1n, s1n, f2n, s2n, f3n, s3n, f4n, s4n]
+
+    pairs = []
+
+    for i in range(0,len(classes)):
+        pair = [classes[i], names[i]]
+        pairToHtml = zip(pair[0], pair[1])
+        pairs.append(pairToHtml)
+
     context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
                "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
-               "techElectiveClasses": techElectiveToHTML, "s1": s1, "s2": s2, "s3": s3, "s4": s4, "f1": f1, "f2": f2,
-               "f3": f3, "f4": f4, "sems": sems}
+               "techElectiveClasses": techElectiveToHTML, "responsePairs" : pairs}
 
     return render(request, 'ProgramBuilder.html', context)
 
@@ -281,7 +302,7 @@ def rchecker(request):
         context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
                    "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
                    "techElectiveClasses": techElectiveToHTML}
-        return render(request, 'RequirementChecker.html', context)
+        return render(request, 'RChecker.html', context)
 
 
 def checkRequirements(classes):
