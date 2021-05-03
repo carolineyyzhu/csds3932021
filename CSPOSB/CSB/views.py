@@ -171,14 +171,14 @@ def checkRequirements(classes):
         dept_id = course[0:4]
         course_id = course[5:8]
 
-        if Course.objects.filter(department=dept_id,number=course_id).exists() and Fulfills.objects.get(cid=course_name).rid == "Technical Elective":
+        if Course.objects.filter(department=dept_id,number=course_id).exists():
             cs_requirement_nums["tech_group_1"] += 1
 
         if dept_id == "CSDS" and Course.objects.filter(department=dept_id,number=course_id).exists():
             cs_requirement_nums["total_cs_credits"] += Course.objects.get(department=dept_id,number=course_id).credits
             cs_requirement_nums["total_cs_courses"] += 1
 
-        course_name = Course.objects.get(department=dept_id, number=course_id).name
+        course_name = Course.objects.get(department=dept_id, number=course_id).cid
         #TODO: make sure that this is the same as the depth from above
         can_be_counted["depth"] = Fulfills.objects.get(cid=course_name).rid == "Depth"
         can_be_counted["breadth"] = Fulfills.objects.get(cid=course_name).rid == "Breadth"
@@ -198,18 +198,19 @@ def checkRequirements(classes):
                     "is_depth_fulfilled":cs_requirement_nums["depth_courses"] > 4,
                     "is_tech_fulfilled":cs_requirement_nums["tech_group_1"] + cs_requirement_nums["tech_group_2"] <= 6 and cs_requirement_nums["tech_group_2"] <= 2}
 
-    if is_fulfilled["is_cs_credits_fulfilled"]:
+    if not is_fulfilled["is_cs_credits_fulfilled"]:
         missing_reqs.append("Total CS Credits")
-    if is_fulfilled["is_cs_courses_fulfilled"]:
+    if not is_fulfilled["is_cs_courses_fulfilled"]:
         missing_reqs.append("Total CS Courses")
         #TODO: display all technical electives to fulfill this requirement
-    if is_fulfilled["is_core_fulfilled"]:
+    if not is_fulfilled["is_core_fulfilled"]:
         missing_reqs.append("Core Courses")
-    if is_fulfilled["is_breadth_fulfilled"]:
+    if not is_fulfilled["is_breadth_fulfilled"]:
         missing_reqs.append("Breadth Courses")
-    if is_fulfilled["is_depth_fulfilled"]:
+    if not is_fulfilled["is_depth_fulfilled"]:
         missing_reqs.append("Depth Courses")
 
+    print("missing_reqs" + str(missing_reqs))
 
     if not all(not value for value in is_fulfilled.values()):
         are_reqs_fulfilled = False
