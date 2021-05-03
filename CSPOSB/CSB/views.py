@@ -249,12 +249,9 @@ def rchecker(request):
     sagesToHTML = zip(sagesToHTML1[0], sagesToHTML1[1], sagesToHTML1[2])
 
     # Schedule has been submitted
-    f1, s1, f2, s2, f3, s3, f4, s4 = [],[],[],[],[],[],[],[]
     if request.method == "POST":
         form = request.POST.get("builder")
         data = request.POST.copy()
-        semester = data.getlist("Semester")
-        year = data.getlist("Year")
         classes = data.getlist('Classes')
 
         toDelete = []
@@ -270,29 +267,8 @@ def rchecker(request):
                 toDelete.append(i)
         toDelete.reverse()
         for index in range(0, len(toDelete)):
-            semester.pop(toDelete[index])
-            year.pop(toDelete[index])
-            classes.pop(toDelete[index])
 
-        for i in range(0, len(classes)):
-            if semester == "spring":
-                if year == 1:
-                    s1.append(classes[i])
-                if year == 2:
-                    s2.append(classes[i])
-                if year == 3:
-                    s3.append(classes[i])
-                else:
-                    s4.append(classes[i])
-            else:
-                if year == 1:
-                    f1.append(classes[i])
-                if year == 2:
-                    f2.append(classes[i])
-                if year == 3:
-                    f3.append(classes[i])
-                else:
-                    f4.append(classes[i])
+            classes.pop(toDelete[index])
 
         areReqFulfilled, missingReq = checkRequirements(classes)
 
