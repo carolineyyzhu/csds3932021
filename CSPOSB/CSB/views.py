@@ -22,7 +22,7 @@ def posb(request):
     for courses in breadthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department + str(courses.number)
+        temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
     breadthToHTML1 = [cid, name, numberDept]
     cid = []
@@ -48,7 +48,7 @@ def posb(request):
     for courses in coreClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department + str(courses.number)
+        temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
     coreToHTML1 = [cid, name, numberDept]
     cid = []
@@ -61,7 +61,7 @@ def posb(request):
     for courses in generalBreadthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department + str(courses.number)
+        temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
     generalBreadthToHTML1 = [cid, name, numberDept]
     cid = []
@@ -74,7 +74,7 @@ def posb(request):
     for courses in techElectiveClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department + str(courses.number)
+        temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
     techElectiveToHTML1 = [cid, name, numberDept]
     cid = []
@@ -87,10 +87,11 @@ def posb(request):
     for courses in sagesClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department + str(courses.number)
+        temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
     sagesToHTML1 = [cid, name, numberDept]
     sagesToHTML = zip(sagesToHTML1[0], sagesToHTML1[1], sagesToHTML1[2])
+
     # Schedule has been submitted
     f1, s1, f2, s2, f3, s3, f4, s4 = ([],) * 8
     if request.method == "POST":
@@ -136,14 +137,67 @@ def posb(request):
                     f3.append(classes[i])
                 else:
                     f4.append(classes[i])
-    context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
-               "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
-               "techElectiveClasses": techElectiveToHTML, "s1": s1, "s2": s2, "s3": s3, "s4": s4, "f1": f1, "f2": f2,
-               "f3": f3, "f4": f4}
 
-    return render(request, 'ProgramBuilder.html', context)
+        areReqFulfilled, missingReq = checkRequirements(classes)
+
+        context = {'classes': classes, 'areReqFulfilled': areReqFulfilled, 'missingReq': missingReq}
+        return render(request, 'RequirementChecker.html', context)
+    else:
+        context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
+                   "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
+                   "techElectiveClasses": techElectiveToHTML}
+        return render(request, 'ProgramBuilder.html', context)
 
 
 def rchecker(request):
     context = {"fulfillsRequirements":False, "classesNeeded":None}
     return render(request, 'RequirementChecker.html', context)
+
+
+def checkRequirements(classes):
+    while('empty' in classes):
+        classes.remove('empty')
+
+    are_reqs_fulfilled = True
+    missing_reqs = []
+
+    total_cs_credits = 0
+    total_cs_courses = 0
+    core_courses     = 0
+    breadth_courses  = 0
+    depth_courses    = 0
+
+    for course in classes:
+        dept_id = course[0:4]
+        course_id = course[5:8]
+        if dept_id == "CSDS" and Course.objects.filter(department=dept_id,number=course_id).exists():
+            total_cs_credits += Course.objects.get(department=dept_id,number=course_id).credits
+            total_cs_courses += 1
+
+    is_cs_credits_fulfilled = True
+    is_cs_courses_fulfilled = True
+    is_core_fulfilled       = True
+    is_breadth_fulfilled    = True
+    is_depth_fulfilled      = True
+
+    if total_cs_credits <= 63:
+        is_cs_credits_fulfilled = False
+        missing_reqs.append("Total CS Credits")
+    if total_cs_courses <= 20:
+        is_cs_courses_fulfilled = False
+        missing_reqs.append("Total CS Courses")
+    if core_courses <= 6:
+        is_core_fulfilled = False
+        missing_reqs.append("Core Courses")
+    if breadth_courses <= 5:
+        is_breadth_fulfilled = False
+        missing_reqs.append("Breadth Courses")
+    if depth_courses <= 4:
+        is_depth_fulfilled = False
+        missing_reqs.append("Depth Courses")
+
+    if not all([is_cs_credits_fulfilled,is_cs_courses_fulfilled,is_core_fulfilled,is_breadth_fulfilled,is_depth_fulfilled]):
+        are_reqs_fulfilled = False
+
+
+    return are_reqs_fulfilled, missing_reqs
