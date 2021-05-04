@@ -1,12 +1,45 @@
 {% extends "base.html" %}
+{% block title%} CSPOSB {% endblock %}
 {% block content %}
-    <h1>Requirement Checker</h1>
-    <body>
-    The selected classes are:<br>
-    <b>{{classes}}</b><br>
-    <b>{{areReqFulfilled}}</b><br>
-    <b>{{missingReq}}</b><br>
-    </body>
-    <br><br><br><br>
-    <a href=posb>Go back to builder page</a>
+    <h1>Requirement Checker Results</h1>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" style="background: whitesmoke; padding: 15px; border-radius: 10px">
+            <div id="stylized">
+                <h2 style="text-align:center">Valid Schedule: <b>{{areReqFulfilled}}</b></h2>
+                <hr>
+
+                <table style="width:20%;margin-left:auto;margin-right:auto">
+                  <tr>
+                    <th style="text-align:center"><b>Requirements Not Satisfied</b></th>
+                  </tr>
+                  {% for req in missingReq %}
+                    <tr>
+                      <td style="text-align:center">{{req}}</td>
+                    </tr>
+                  {% endfor %}
+                </table>
+
+                <hr>
+
+                <table style="width:20%;margin-left:auto;margin-right:auto">
+                  <tr>
+                    <th style="text-align:center"><b>Selected Classes Are</b></th>
+                  </tr>
+                  {% for class in classes %}
+                    <tr>
+                      <td style="text-align:center">{{class}}</td>
+                    </tr>
+                  {% endfor %}
+                </table>
+
+                <hr>
+
+                <a href="posb" style="text-align:center">Return to Program of Study Builder</a>
+
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
