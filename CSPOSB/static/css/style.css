@@ -14,14 +14,22 @@ body {
   color: #0a304e;
 }
 
-.text {
-  color: #0a304e;
+#BSCS {
+    padding-top: 60px;
+    margin-top: -60px;
+}
+
+#BACS {
+    padding-top: 60px;
+    margin-top: -60px;
 }
 
 h1 {
   color: #0a304e;
   text-align: center;
 }
+
+.anchor { padding-top: 30px; }
 
 h2, h3, h4, h5, h6 {
   color: #444444;
