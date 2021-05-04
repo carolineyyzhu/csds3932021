@@ -335,8 +335,8 @@ def checkRequirements(classes):
 
         course_name = Course.objects.get(department=dept_id, number=course_id).cid
         # TODO: make sure that this is the same as the depth from above
-        can_be_counted["depth"] = Fulfills.objects.get(cid=course_name).rid == "Depth"
-        can_be_counted["breadth"] = Fulfills.objects.get(cid=course_name).rid == "Breadth"
+        can_be_counted["depth"] = Fulfills.objects.filter(cid=course_name, rid=1).exists()
+        can_be_counted["breadth"] = Fulfills.objects.filter(cid=course_name, rid=2).exists()
 
         if can_be_counted["depth"]:
             cs_requirement_nums["depth_courses"] += 1
