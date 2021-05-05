@@ -367,7 +367,7 @@ def checkRequirements(classes):
 
     print("missing_reqs" + str(missing_reqs))
 
-    if not all(not value for value in is_fulfilled.values()):
+    if not all(value for value in is_fulfilled.values()):
         are_reqs_fulfilled = False
 
     return are_reqs_fulfilled, missing_reqs
