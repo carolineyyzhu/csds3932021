@@ -10,16 +10,18 @@
                 <h2 style="text-align:center">Valid Schedule: <b>{{areReqFulfilled}}</b></h2>
                 <hr>
 
-                <table style="width:20%;margin-left:auto;margin-right:auto">
-                  <tr>
-                    <th style="text-align:center"><b>Requirements Not Satisfied</b></th>
-                  </tr>
-                  {% for req in missingReq %}
+                {% if areReqFulfilled == False %}
+                  <table style="width:20%;margin-left:auto;margin-right:auto">
                     <tr>
-                      <td style="text-align:center">{{req}}</td>
+                      <th style="text-align:center"><b>Requirements Not Satisfied</b></th>
                     </tr>
-                  {% endfor %}
-                </table>
+                    {% for req in missingReq %}
+                      <tr>
+                        <td style="text-align:center">{{req}}</td>
+                      </tr>
+                    {% endfor %}
+                  </table>
+                {% endif %}
 
                 <hr>
 
@@ -36,7 +38,7 @@
 
                 <hr>
 
-                <a href="posb" style="text-align:center">Return to Program of Study Builder</a>
+                <a href="RChecker" style="text-align:center">Return to Requirements Checker</a>
 
             </div>
         </div>
