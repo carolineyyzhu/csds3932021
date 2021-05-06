@@ -183,6 +183,8 @@ def posb(request):
             pairToHtml = zip(pair[0], pair[1])
             pairs.append(pairToHtml)
 
+        print(classes)
+
         areReqFulfilled, missingReq = checkRequirements(classes)
 
         context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
@@ -351,7 +353,7 @@ def checkRequirements(classes):
 
     for course in classes:
         dept_id = course[0:4]
-        course_id = course[5:8]
+        course_id = course[-3:]
 
         if Course.objects.filter(department=dept_id, number=course_id).exists():
             cs_requirement_nums["tech_group_1"] += 1

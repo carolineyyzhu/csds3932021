@@ -3,65 +3,69 @@
 {% block content %}
     <h1>Program</h1>
 
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8" style="background: whitesmoke; padding: 15px; border-radius: 10px">
-            <div id="stylized">
+    {% if areReqFulfilled == False %}
+      <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8" style="background: whitesmoke; padding: 15px; border-radius: 10px">
+              <div id="stylized">
                 <h2 style="text-align:center">Valid Schedule: <b>{{areReqFulfilled}}</b></h2>
-                <hr>
 
-                <table style="width:20%;margin-left:auto;margin-right:auto">
-                  <tr>
-                    <th style="text-align:center"><b>Requirements Not Satisfied</b></th>
-                  </tr>
-                  {% for req in missingReq %}
-                    <tr>
-                      <td style="text-align:center">{{req}}</td>
-                    </tr>
+                  <br/>
+                  {% for pair in responsePairs %}
+                      {% for class, name in pair %}
+                          {% if forloop.counter == 1 %}
+                              {% if class == 'Fall Year 1' or class == 'Fall Year 2' or class == 'Fall Year 3' or class == 'Fall Year 4' or class == 'Spring Year 1' or class == 'Spring Year 2' or class == 'Spring Year 3' or class == 'Spring Year 4' %}
+                                  <table style="width:50%;margin-left:auto;margin-right:auto">
+                                  <tr>
+                                      <th style="text-align:center"><strong>{{ class }}</strong></th>
+                                  </tr>
+                              {% endif %}
+                          {% else %}
+                              <tr>
+                                  <td style="text-align:center">{{name}} | {{ class }}</td>
+                              </tr>
+                          {% endif %}
+                      {% endfor %}
+                    </table>
+                    <br/>
                   {% endfor %}
-                </table>
 
-                <hr>
+                  <hr>
 
-                <br/>
-                {% for pair in responsePairs %}
-                    {% for class, name in pair %}
-                        {% if forloop.counter == 1 %}
-                            {% if class == 'Fall Year 1' or class == 'Fall Year 2' or class == 'Fall Year 3' or class == 'Fall Year 4' or class == 'Spring Year 1' or class == 'Spring Year 2' or class == 'Spring Year 3' or class == 'Spring Year 4' %}
-                                <table style="width:50%;margin-left:auto;margin-right:auto">
-                                <tr>
-                                    <th style="text-align:center"><strong>{{ class }}</strong></th>
-                                </tr>
-                            {% endif %}
-                        {% else %}
-                            <tr>
-                                <td style="text-align:center">{{name}} | {{ class }}</td>
-                            </tr>
-                        {% endif %}
+                  <table style="width:20%;margin-left:auto;margin-right:auto">
+                    <tr>
+                      <th style="text-align:center"><b>Selected Classes Are</b></th>
+                    </tr>
+                    {% for class in classes %}
+                      <tr>
+                        <td style="text-align:center">{{class}}</td>
+                      </tr>
                     {% endfor %}
                   </table>
-                  <br/>
-                {% endfor %}
 
-                <hr>
+                  <hr>
 
-                <table style="width:20%;margin-left:auto;margin-right:auto">
-                  <tr>
-                    <th style="text-align:center"><b>Selected Classes Are</b></th>
-                  </tr>
-                  {% for class in classes %}
+                  <table style="width:20%;margin-left:auto;margin-right:auto">
                     <tr>
-                      <td style="text-align:center">{{class}}</td>
+                      <th style="text-align:center"><b>Requirements Not Satisfied</b></th>
                     </tr>
-                  {% endfor %}
-                </table>
+                    {% for req in missingReq %}
+                      <tr>
+                        <td style="text-align:center">{{req}}</td>
+                      </tr>
+                    {% endfor %}
+                  </table>
 
-                <hr>
+                  <hr>
 
-                <a href="posb" style="text-align:center">Return to Program of Study Builder</a>
+                  <a href="posb" style="text-align:center">Return to Program of Study Builder</a>
 
-            </div>
-        </div>
-    </div>
+              </div>
+          </div>
+      </div>
+
+    {% else %}
+      <p> this is valid schedule </p>
+    {% endif %}
 
 {% endblock %}
