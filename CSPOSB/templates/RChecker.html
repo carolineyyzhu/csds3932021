@@ -12,6 +12,13 @@
             <div id="stylized">
                 <form action = "#" method="post" name = "builder">
                 {% csrf_token %}
+                <p>Choose the degree you wish to complete.</p>
+                <select id="degree" name="Degree">
+                    {% for did, name in degrees %}
+                        <option value="{{ did }}">{{ name }}</option>
+                    {% endfor %}
+                </select>
+                <br><br>
                 <button type="button" class="collapsible">CS Core</button>
                 <div class="content">
                     <br>

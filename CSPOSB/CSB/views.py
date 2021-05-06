@@ -104,6 +104,15 @@ def posb(request):
         numberDept.append(temp)
     sagesToHTML1 = [cid, name, numberDept]
     sagesToHTML = zip(sagesToHTML1[0], sagesToHTML1[1], sagesToHTML1[2])
+    # Get Degrees
+    did = []
+    degreeName = []
+    degrees = Degree.objects.all()
+    for degree in degrees:
+        did.append(degree.did)
+        degreeName.append(degree.name)
+    degreeToHTML1 = [did, degreeName]
+    degreeToHTML = zip(degreeToHTML1[0], degreeToHTML1[1])
     # Schedule has been submitted
     f1c, s1c, f2c, s2c, f3c, s3c, f4c, s4c = ['Fall Year 1'], ['Spring Year 1'], ['Fall Year 2'], ['Spring Year 2'], [
         'Fall Year 3'], ['Spring Year 3'], ['Fall Year 4'], ['Spring Year 4']
@@ -177,7 +186,7 @@ def posb(request):
     context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
                "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
                "techElectiveClasses": techElectiveToHTML, "engineeringClasses": engineeringToHTML,
-               "responsePairs": pairs}
+               "responsePairs": pairs, "degrees": degreeToHTML}
 
     return render(request, 'ProgramBuilder.html', context)
 
@@ -276,6 +285,16 @@ def rchecker(request):
     sagesToHTML1 = [cid, name, numberDept]
     sagesToHTML = zip(sagesToHTML1[0], sagesToHTML1[1], sagesToHTML1[2])
 
+    # Get Degrees
+    did = []
+    degreeName = []
+    degrees = Degree.objects.all()
+    for degree in degrees:
+        did.append(degree.did)
+        degreeName.append(degree.name)
+    degreeToHTML1 = [did, degreeName]
+    degreeToHTML = zip(degreeToHTML1[0], degreeToHTML1[1])
+
     # Schedule has been submitted
     if request.method == "POST":
         form = request.POST.get("builder")
@@ -304,7 +323,7 @@ def rchecker(request):
     else:
         context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
                    "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
-                   "techElectiveClasses": techElectiveToHTML, "engineeringClasses": engineeringToHTML}
+                   "techElectiveClasses": techElectiveToHTML, "engineeringClasses": engineeringToHTML, "degrees": degreeToHTML}
         return render(request, 'RChecker.html', context)
 
 
