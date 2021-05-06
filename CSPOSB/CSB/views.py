@@ -173,22 +173,30 @@ def posb(request):
                     f4c.append(classes[i])
                     f4n.append(names[i])
 
-    classes = [f1c, s1c, f2c, s2c, f3c, s3c, f4c, s4c]
-    names = [f1n, s1n, f2n, s2n, f3n, s3n, f4n, s4n]
+        schClasses = [f1c, s1c, f2c, s2c, f3c, s3c, f4c, s4c]
+        names = [f1n, s1n, f2n, s2n, f3n, s3n, f4n, s4n]
 
-    pairs = []
+        pairs = []
 
-    for i in range(0, len(classes)):
-        pair = [classes[i], names[i]]
-        pairToHtml = zip(pair[0], pair[1])
-        pairs.append(pairToHtml)
+        for i in range(0, len(schClasses)):
+            pair = [schClasses[i], names[i]]
+            pairToHtml = zip(pair[0], pair[1])
+            pairs.append(pairToHtml)
 
-    context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
-               "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
-               "techElectiveClasses": techElectiveToHTML, "engineeringClasses": engineeringToHTML,
-               "responsePairs": pairs, "degrees": degreeToHTML}
+        areReqFulfilled, missingReq = checkRequirements(classes)
 
-    return render(request, 'ProgramBuilder.html', context)
+        context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
+                       "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
+                       "techElectiveClasses": techElectiveToHTML, "engineeringClasses": engineeringToHTML,
+                       "responsePairs": pairs, "degrees": degreeToHTML, 'classes': classes, 'areReqFulfilled': areReqFulfilled, 'missingReq': missingReq}
+
+        return render(request, 'Program.html', context)
+
+    else:
+        context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
+                   "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
+                   "techElectiveClasses": techElectiveToHTML, "engineeringClasses": engineeringToHTML, "degrees": degreeToHTML}
+        return render(request, 'ProgramBuilder.html', context)
 
 
 def rchecker(request):
