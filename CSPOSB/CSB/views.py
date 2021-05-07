@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 
 from .models import Course, Fulfills, Requirement, Requires, Degree
@@ -6,7 +6,8 @@ from .models import Course, Fulfills, Requirement, Requires, Degree
 
 # Create your views here.
 def index(request):
-    TESTcheckRequirements(['CSDS 448', 'CSDS 499', 'CSDS 341', 'CSDS 440', 'CSDS 435', 'MATH 408'], 1, "software engineering")
+    TESTcheckRequirements(['CSDS 448', 'CSDS 499', 'CSDS 341', 'CSDS 440', 'CSDS 435', 'MATH 408'], 1,
+                          "software engineering")
     context = {}
     return render(request, 'index.html', context)
 
@@ -23,7 +24,7 @@ def posb(request):
     for courses in breadthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department + str(courses.number)
+        temp = courses.department + " " +str(courses.number)
         numberDept.append(temp)
     breadthToHTML1 = [cid, name, numberDept]
     cid = []
@@ -49,7 +50,7 @@ def posb(request):
     for courses in coreClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department + str(courses.number)
+        temp = courses.department +" " + str(courses.number)
         numberDept.append(temp)
     coreToHTML1 = [cid, name, numberDept]
     cid = []
@@ -62,7 +63,7 @@ def posb(request):
     for courses in generalBreadthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department + str(courses.number)
+        temp = courses.department +" " + str(courses.number)
         numberDept.append(temp)
     generalBreadthToHTML1 = [cid, name, numberDept]
     cid = []
@@ -75,7 +76,7 @@ def posb(request):
     for courses in techElectiveClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department + str(courses.number)
+        temp = courses.department + " " +str(courses.number)
         numberDept.append(temp)
     techElectiveToHTML1 = [cid, name, numberDept]
     cid = []
@@ -101,7 +102,7 @@ def posb(request):
     for courses in sagesClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department + str(courses.number)
+        temp = courses.department + " " +str(courses.number)
         numberDept.append(temp)
     sagesToHTML1 = [cid, name, numberDept]
     sagesToHTML = zip(sagesToHTML1[0], sagesToHTML1[1], sagesToHTML1[2])
@@ -125,6 +126,8 @@ def posb(request):
         year = data.getlist("Year")
         classes = data.getlist('Classes')
         names = data.getlist('Name')
+        degree = data.get('Degree')
+
 
         toDelete = []
         removeEmpty = []
@@ -186,19 +189,21 @@ def posb(request):
 
         print(classes)
 
-        areReqFulfilled, missingReq = checkRequirements(classes)
+        areReqFulfilled, missingReq = TESTcheckRequirements(classes, degree, "Software Engineering")
 
         context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
-                       "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
-                       "techElectiveClasses": techElectiveToHTML, "engineeringClasses": engineeringToHTML,
-                       "responsePairs": pairs, "degrees": degreeToHTML, 'classes': classes, 'areReqFulfilled': areReqFulfilled, 'missingReq': missingReq}
+                   "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
+                   "techElectiveClasses": techElectiveToHTML, "engineeringClasses": engineeringToHTML,
+                   "responsePairs": pairs, "degrees": degreeToHTML, 'classes': classes,
+                   'areReqFulfilled': areReqFulfilled, 'missingReq': missingReq}
 
         return render(request, 'Program.html', context)
 
     else:
         context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
                    "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
-                   "techElectiveClasses": techElectiveToHTML, "engineeringClasses": engineeringToHTML, "degrees": degreeToHTML}
+                   "techElectiveClasses": techElectiveToHTML, "engineeringClasses": engineeringToHTML,
+                   "degrees": degreeToHTML}
         return render(request, 'ProgramBuilder.html', context)
 
 
@@ -311,6 +316,7 @@ def rchecker(request):
         form = request.POST.get("builder")
         data = request.POST.copy()
         classes = data.getlist('Classes')
+        degree = data.get('Degree')
 
         toDelete = []
         removeEmpty = []
@@ -327,7 +333,7 @@ def rchecker(request):
         for index in range(0, len(toDelete)):
             classes.pop(toDelete[index])
 
-        areReqFulfilled, missingReq = checkRequirements(classes)
+        areReqFulfilled, missingReq = TESTcheckRequirements(classes, degree, 'Software Engineering')
 
         context = {'classes': classes, 'areReqFulfilled': areReqFulfilled, 'missingReq': missingReq}
         return render(request, 'RequirementChecker.html', context)
@@ -415,13 +421,12 @@ def TESTcheckRequirements(classes, degree, depth):
         temp.append(requirement.quantity)
         temp.append(requirement.credits)
         degreeRequirements[str(requirement.rid)] = temp
-    # TODO: Get the actual value of the depth area
-    # TODO: Add group 1 and group 2 to database
+
     depth_area = depth
     are_reqs_fulfilled = True
     missing_reqs = []
 
-    cs_requirement_nums = {req: [0,0] for req in degreeRequirements.keys()}
+    cs_requirement_nums = {req: [0, 0] for req in degreeRequirements.keys()}
     can_be_counted = {"depth": False, "breadth": False, "tech-elective": False}
 
     for course in classes:
@@ -434,21 +439,22 @@ def TESTcheckRequirements(classes, degree, depth):
             requirement_name = Requirement.objects.get(name=x).name
             if requirement_name in cs_requirement_nums:
                 cs_requirement_nums[requirement_name][0] += 1
-                cs_requirement_nums[requirement_name][1] += Course.objects.get(department=dept_id, number=course_id).credits
+                cs_requirement_nums[requirement_name][1] += Course.objects.get(department=dept_id,
+                                                                               number=course_id).credits
             cs_requirement_nums["Total Credits"][1] += 3
     is_fulfilled = {}
     for requirement in degreeRequirements.keys():
         name = requirement.replace(" ", "")
-        is_fulfilled[name + "_is_fulfilled"] = cs_requirement_nums[requirement][1] >= degreeRequirements[requirement][1] and cs_requirement_nums[requirement][0] >= degreeRequirements[requirement][0]
+        is_fulfilled[name + "_is_fulfilled"] = cs_requirement_nums[requirement][1] >= degreeRequirements[requirement][
+            1] and cs_requirement_nums[requirement][0] >= degreeRequirements[requirement][0]
 
     for fulfilled in is_fulfilled.keys():
         if is_fulfilled[fulfilled] == False:
+            fulfilled = fulfilled[:-13]
             missing_reqs.append(fulfilled)
-
 
     print("missing_reqs" + str(missing_reqs))
 
     if not all(value for value in is_fulfilled.values()):
         are_reqs_fulfilled = False
     return are_reqs_fulfilled, missing_reqs
-
