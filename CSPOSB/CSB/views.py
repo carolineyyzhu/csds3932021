@@ -33,17 +33,54 @@ def posb(request):
     breadthToHTML = zip(breadthToHTML1[0], breadthToHTML1[1], breadthToHTML1[2])
 
     # Depth
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1)
+    area = []
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Software Engineering")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
-    depthToHTML1 = [cid, name, numberDept]
+        area.append("Software Engineering")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Algorithms and Theory")
+    for courses in depthClasses:
+        cid.append(courses.cid)
+        name.append(courses.name)
+        temp = courses.department + " " + str(courses.number)
+        numberDept.append(temp)
+        area.append("Algorithms and Theory")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Computer Systems, Networks, and Security")
+    for courses in depthClasses:
+        cid.append(courses.cid)
+        name.append(courses.name)
+        temp = courses.department + " " + str(courses.number)
+        numberDept.append(temp)
+        area.append("Computer Systems, Networks, and Security")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Databases and Data Mining")
+    for courses in depthClasses:
+        cid.append(courses.cid)
+        name.append(courses.name)
+        temp = courses.department + " " + str(courses.number)
+        numberDept.append(temp)
+        area.append("Databases and Data Mining")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Bioinformatics")
+    for courses in depthClasses:
+        cid.append(courses.cid)
+        name.append(courses.name)
+        temp = courses.department + " " + str(courses.number)
+        numberDept.append(temp)
+        area.append("Bioinformatics")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Artificial Intelligence")
+    for courses in depthClasses:
+        cid.append(courses.cid)
+        name.append(courses.name)
+        temp = courses.department + " " + str(courses.number)
+        numberDept.append(temp)
+        area.append("Artificial Intelligence")
+    depthToHTML1 = [cid, name, numberDept, area]
     cid = []
     name = []
     numberDept = []
-    depthToHTML = zip(depthToHTML1[0], depthToHTML1[1], depthToHTML1[2])
+    depthToHTML = list(zip(depthToHTML1[0], depthToHTML1[1], depthToHTML1[2], depthToHTML1[3]))
 
     # Core
     coreClasses = Course.objects.all().select_related().filter(fulfills__rid=9)
@@ -236,17 +273,54 @@ def rchecker(request):
     breadthToHTML = zip(breadthToHTML1[0], breadthToHTML1[1], breadthToHTML1[2])
 
     # Depth
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1)
+    area = []
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Software Engineering")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
-    depthToHTML1 = [cid, name, numberDept]
+        area.append("Software Engineering")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Algorithms and Theory")
+    for courses in depthClasses:
+        cid.append(courses.cid)
+        name.append(courses.name)
+        temp = courses.department + " " + str(courses.number)
+        numberDept.append(temp)
+        area.append("Algorithms and Theory")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Computer Systems, Networks, and Security")
+    for courses in depthClasses:
+        cid.append(courses.cid)
+        name.append(courses.name)
+        temp = courses.department + " " + str(courses.number)
+        numberDept.append(temp)
+        area.append("Computer Systems, Networks, and Security")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Databases and Data Mining")
+    for courses in depthClasses:
+        cid.append(courses.cid)
+        name.append(courses.name)
+        temp = courses.department + " " + str(courses.number)
+        numberDept.append(temp)
+        area.append("Databases and Data Mining")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Bioinformatics")
+    for courses in depthClasses:
+        cid.append(courses.cid)
+        name.append(courses.name)
+        temp = courses.department + " " + str(courses.number)
+        numberDept.append(temp)
+        area.append("Bioinformatics")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Artificial Intelligence")
+    for courses in depthClasses:
+        cid.append(courses.cid)
+        name.append(courses.name)
+        temp = courses.department + " " + str(courses.number)
+        numberDept.append(temp)
+        area.append("Artificial Intelligence")
+    depthToHTML1 = [cid, name, numberDept, area]
     cid = []
     name = []
     numberDept = []
-    depthToHTML = zip(depthToHTML1[0], depthToHTML1[1], depthToHTML1[2])
+    depthToHTML = list(zip(depthToHTML1[0], depthToHTML1[1], depthToHTML1[2], depthToHTML1[3]))
 
     # Core
     coreClasses = Course.objects.all().select_related().filter(fulfills__rid=9)

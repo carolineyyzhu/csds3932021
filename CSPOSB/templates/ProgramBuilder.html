@@ -74,7 +74,10 @@
                 <button type="button" class="collapsible">CS Depth</button>
                 <div class="content">
                     <br>
-                    {% for cid, name, numberDept in depthClasses %}
+                    <h3 class="text-center">  Area 1: Software Engineering  </h3>
+                    <br>
+                    {% for cid, name, numberDept, area in depthClasses %}
+                      {% if area == "Software Engineering" %}
                         <p style="text-align:center"><strong>{{name}}</strong></p>
                         <ul style="list-style-type:none; text-align: center">
                             <li>
@@ -95,6 +98,142 @@
                             </li>
                         </ul>
                         <hr>
+                      {% endif %}
+                    {% endfor %}
+                    <br>
+                    <h3 class="text-center">  Area 2: Algorithms and Theory  </h3>
+                    <br>
+                    {% for cid, name, numberDept, area in depthClasses %}
+                      {% if area == "Algorithms and Theory" %}
+                        <p style="text-align:center"><strong>{{name}}</strong></p>
+                        <ul style="list-style-type:none; text-align: center">
+                            <li>
+                                <input type="hidden" name="Name" value="{{ name }}">
+                                <label for="a">{{numberDept}}</label>
+                                <input type="hidden" name="Classes" value="empty">
+                                <input id="a" name = "Classes" type="checkbox" value="{{ numberDept }}" {{ name }}>
+                                <select id="sem" name="Semester">
+                                    <option value="fall">Fall</option>
+                                    <option value="spring">Spring</option>
+                                </select>
+                                <select id="year" name="Year">
+                                    <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="4">4th</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <hr>
+                      {% endif %}
+                    {% endfor %}
+                    <br>
+                    <h3 class="text-center">  Area 3: Computer Systems, Networks, and Security  </h3>
+                    <br>
+                    {% for cid, name, numberDept, area in depthClasses %}
+                      {% if area == "Computer Systems, Networks, and Security" %}
+                        <p style="text-align:center"><strong>{{name}}</strong></p>
+                        <ul style="list-style-type:none; text-align: center">
+                            <li>
+                                <input type="hidden" name="Name" value="{{ name }}">
+                                <label for="a">{{numberDept}}</label>
+                                <input type="hidden" name="Classes" value="empty">
+                                <input id="a" name = "Classes" type="checkbox" value="{{ numberDept }}" {{ name }}>
+                                <select id="sem" name="Semester">
+                                    <option value="fall">Fall</option>
+                                    <option value="spring">Spring</option>
+                                </select>
+                                <select id="year" name="Year">
+                                    <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="4">4th</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <hr>
+                      {% endif %}
+                    {% endfor %}
+                    <br>
+                    <h3 class="text-center">  Area 4: Databases and Data Mining  </h3>
+                    <br>
+                    {% for cid, name, numberDept, area in depthClasses %}
+                      {% if area == "Databases and Data Mining" %}
+                        <p style="text-align:center"><strong>{{name}}</strong></p>
+                        <ul style="list-style-type:none; text-align: center">
+                            <li>
+                                <input type="hidden" name="Name" value="{{ name }}">
+                                <label for="a">{{numberDept}}</label>
+                                <input type="hidden" name="Classes" value="empty">
+                                <input id="a" name = "Classes" type="checkbox" value="{{ numberDept }}" {{ name }}>
+                                <select id="sem" name="Semester">
+                                    <option value="fall">Fall</option>
+                                    <option value="spring">Spring</option>
+                                </select>
+                                <select id="year" name="Year">
+                                    <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="4">4th</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <hr>
+                      {% endif %}
+                    {% endfor %}
+                    <br>
+                    <h3 class="text-center">  Area 5: Bioinformatics  </h3>
+                    <br>
+                    {% for cid, name, numberDept, area in depthClasses %}
+                      {% if area == "Bioinformatics" %}
+                        <p style="text-align:center"><strong>{{name}}</strong></p>
+                        <ul style="list-style-type:none; text-align: center">
+                            <li>
+                                <input type="hidden" name="Name" value="{{ name }}">
+                                <label for="a">{{numberDept}}</label>
+                                <input type="hidden" name="Classes" value="empty">
+                                <input id="a" name = "Classes" type="checkbox" value="{{ numberDept }}" {{ name }}>
+                                <select id="sem" name="Semester">
+                                    <option value="fall">Fall</option>
+                                    <option value="spring">Spring</option>
+                                </select>
+                                <select id="year" name="Year">
+                                    <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="4">4th</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <hr>
+                      {% endif %}
+                    {% endfor %}
+                    <br>
+                    <h3 class="text-center">  Area 6: Artificial Intelligence  </h3>
+                    <br>
+                    {% for cid, name, numberDept, area in depthClasses %}
+                      {% if area == "Artificial Intelligence" %}
+                        <p style="text-align:center"><strong>{{name}}</strong></p>
+                        <ul style="list-style-type:none; text-align: center">
+                            <li>
+                                <input type="hidden" name="Name" value="{{ name }}">
+                                <label for="a">{{numberDept}}</label>
+                                <input type="hidden" name="Classes" value="empty">
+                                <input id="a" name = "Classes" type="checkbox" value="{{ numberDept }}" {{ name }}>
+                                <select id="sem" name="Semester">
+                                    <option value="fall">Fall</option>
+                                    <option value="spring">Spring</option>
+                                </select>
+                                <select id="year" name="Year">
+                                    <option value="1">1st</option>
+                                    <option value="2">2nd</option>
+                                    <option value="3">3rd</option>
+                                    <option value="4">4th</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <hr>
+                      {% endif %}
                     {% endfor %}
                 </div>
                 <button type="button" class="collapsible">CS Tech Elective</button>
