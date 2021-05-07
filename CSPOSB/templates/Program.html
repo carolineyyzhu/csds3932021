@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% block title%} CSPOSB {% endblock %}
 {% block content %}
-    <h1>Program</h1>
+    <h1>Selected Schedule</h1>
 
     {% if areReqFulfilled == False %}
       <div class="row">
           <div class="col-md-2"></div>
           <div class="col-md-8" style="background: whitesmoke; padding: 15px; border-radius: 10px">
+            <p>Selected Schedule:<b> Incomplete</b> <button onclick="location.href='posb'" style="float: right;">Start Again</button></p>
+            <p><a href="#courses">Your courses</a> selected on the PoSB page do not meet the program requirements. Hit the start again button to create a new schedule. Scroll below to see your incomplete schedule and needed requirements.</p>
               <div id="stylized">
-                <h2 style="text-align:center">Valid Schedule: <b>{{areReqFulfilled}}</b></h2>
-
-                  <br/>
+                <hr>
+                  <br>
                   {% for pair in responsePairs %}
                       {% for class, name in pair %}
                           {% if forloop.counter == 1 %}
@@ -27,21 +28,8 @@
                           {% endif %}
                       {% endfor %}
                     </table>
-                    <br/>
+                    <br>
                   {% endfor %}
-
-                  <hr>
-
-                  <table style="width:20%;margin-left:auto;margin-right:auto">
-                    <tr>
-                      <th style="text-align:center"><b>Selected Classes Are</b></th>
-                    </tr>
-                    {% for class in classes %}
-                      <tr>
-                        <td style="text-align:center">{{class}}</td>
-                      </tr>
-                    {% endfor %}
-                  </table>
 
                   <hr>
 
@@ -58,8 +46,21 @@
 
                   <hr>
 
-                  <a href="posb" style="text-align:center">Return to Program of Study Builder</a>
+                  <table style="width:20%;margin-left:auto;margin-right:auto">
+                    <tr>
+                      <th style="text-align:center"><a id="courses"><b>Selected Classes Are</b></a></th>
+                    </tr>
+                    {% for class in classes %}
+                      <tr>
+                        <td style="text-align:center">{{class}}</td>
+                      </tr>
+                    {% endfor %}
+                  </table>
 
+                  <hr>
+
+                  <a href="posb" style="text-align:center">Return to Program of Study Builder</a>
+                  <br>
               </div>
           </div>
       </div>
