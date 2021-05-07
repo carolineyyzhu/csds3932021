@@ -72,17 +72,26 @@ def posb(request):
     generalBreadthToHTML = zip(generalBreadthToHTML1[0], generalBreadthToHTML1[1], generalBreadthToHTML1[2])
 
     # Technical Elective
+    group = []
     techElectiveClasses = Course.objects.all().select_related().filter(fulfills__rid=4)
     for courses in techElectiveClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department + " " +str(courses.number)
+        temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
-    techElectiveToHTML1 = [cid, name, numberDept]
+        group.append(4)
+    techElectiveClasses = Course.objects.all().select_related().filter(fulfills__rid=11)
+    for courses in techElectiveClasses:
+        cid.append(courses.cid)
+        name.append(courses.name)
+        temp = courses.department + " " + str(courses.number)
+        numberDept.append(temp)
+        group.append(11)
+    techElectiveToHTML1 = [cid, name, numberDept, group]
     cid = []
     name = []
     numberDept = []
-    techElectiveToHTML = zip(techElectiveToHTML1[0], techElectiveToHTML1[1], techElectiveToHTML1[2])
+    techElectiveToHTML = list(zip(techElectiveToHTML1[0], techElectiveToHTML1[1], techElectiveToHTML1[2], techElectiveToHTML1[3]))
 
     # Engineering
     engineeringClasses = Course.objects.all().select_related().filter(fulfills__rid=10)
@@ -266,17 +275,26 @@ def rchecker(request):
     generalBreadthToHTML = zip(generalBreadthToHTML1[0], generalBreadthToHTML1[1], generalBreadthToHTML1[2])
 
     # Technical Elective
+    group = []
     techElectiveClasses = Course.objects.all().select_related().filter(fulfills__rid=4)
     for courses in techElectiveClasses:
         cid.append(courses.cid)
         name.append(courses.name)
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
-    techElectiveToHTML1 = [cid, name, numberDept]
+        group.append(4)
+    techElectiveClasses = Course.objects.all().select_related().filter(fulfills__rid=11)
+    for courses in techElectiveClasses:
+        cid.append(courses.cid)
+        name.append(courses.name)
+        temp = courses.department + " " + str(courses.number)
+        numberDept.append(temp)
+        group.append(11)
+    techElectiveToHTML1 = [cid, name, numberDept, group]
     cid = []
     name = []
     numberDept = []
-    techElectiveToHTML = zip(techElectiveToHTML1[0], techElectiveToHTML1[1], techElectiveToHTML1[2])
+    techElectiveToHTML = list(zip(techElectiveToHTML1[0], techElectiveToHTML1[1], techElectiveToHTML1[2], techElectiveToHTML1[3]))
 
     # Engineering
     engineeringClasses = Course.objects.all().select_related().filter(fulfills__rid=10)

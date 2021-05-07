@@ -99,29 +99,60 @@
                 </div>
                 <button type="button" class="collapsible">CS Tech Elective</button>
                 <div class="content">
-                    <br>
-                    {% for cid, name, numberDept in techElectiveClasses %}
-                        <p style="text-align:center"><strong>{{name}}</strong></p>
-                        <ul style="list-style-type:none; text-align: center">
-                            <li>
-                                <input type="hidden" name="Name" value="{{ name }}">
-                                <label for="a">{{numberDept}}</label>
-                                <input type="hidden" name="Classes" value="empty">
-                                <input id="a" name = "Classes" type="checkbox" value="{{ numberDept }}">
-                                <select id="sem" name="Semester">
-                                    <option value="fall">Fall</option>
-                                    <option value="spring">Spring</option>
-                                </select>
-                                <select id="year" name="Year">
-                                    <option value="1">1st</option>
-                                    <option value="2">2nd</option>
-                                    <option value="3">3rd</option>
-                                    <option value="4">4th</option>
-                                </select>
-                            </li>
-                        </ul>
-                        <hr>
+                  <br>
+                  <h3 class="text-center">  Group 1  </h3>
+                  <br>
+                  {% for cid, name, numberDept, group in techElectiveClasses %}
+                      {% if group == 4 %}
+                          <p style="text-align:center"><strong>{{name}}</strong></p>
+                          <ul style="list-style-type:none; text-align: center">
+                              <li>
+                                  <input type="hidden" name="Name" value="{{ name }}">
+                                  <label for="a">{{numberDept}}</label>
+                                  <input type="hidden" name="Classes" value="empty">
+                                  <input id="a" name = "Classes" type="checkbox" value="{{ numberDept }}">
+                                  <select id="sem" name="Semester">
+                                      <option value="fall">Fall</option>
+                                      <option value="spring">Spring</option>
+                                  </select>
+                                  <select id="year" name="Year">
+                                      <option value="1">1st</option>
+                                      <option value="2">2nd</option>
+                                      <option value="3">3rd</option>
+                                      <option value="4">4th</option>
+                                  </select>
+                              </li>
+                          </ul>
+                          <hr>
+                       {% endif %}
                     {% endfor %}
+                    <br>
+                    <h3 class="text-center">  Group 2  </h3>
+                    <br>
+                    {% for cid, name, numberDept, group in techElectiveClasses %}
+                        {% if group == 11 %}
+                            <p style="text-align:center"><strong>{{name}}</strong></p>
+                            <ul style="list-style-type:none; text-align: center">
+                                <li>
+                                    <input type="hidden" name="Name" value="{{ name }}">
+                                    <label for="a">{{numberDept}}</label>
+                                    <input type="hidden" name="Classes" value="empty">
+                                    <input id="a" name = "Classes" type="checkbox" value="{{ numberDept }}">
+                                    <select id="sem" name="Semester">
+                                        <option value="fall">Fall</option>
+                                        <option value="spring">Spring</option>
+                                    </select>
+                                    <select id="year" name="Year">
+                                        <option value="1">1st</option>
+                                        <option value="2">2nd</option>
+                                        <option value="3">3rd</option>
+                                        <option value="4">4th</option>
+                                    </select>
+                                </li>
+                            </ul>
+                            <hr>
+                         {% endif %}
+                      {% endfor %}
                 </div>
                 <button type="button" class="collapsible">Engineering</button>
                 <div class="content">
