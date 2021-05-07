@@ -237,7 +237,6 @@ def posb(request):
             pair = [schClasses[i], names[i]]
             pairToHtml = zip(pair[0], pair[1])
             pairs.append(pairToHtml)
-
         print(classes)
 
         areReqFulfilled, missingReq = TESTcheckRequirements(classes, degree, "Software Engineering")
@@ -545,6 +544,23 @@ def TESTcheckRequirements(classes, degree, depth):
                 cs_requirement_nums[requirement_name][0] += 1
                 cs_requirement_nums[requirement_name][1] += Course.objects.get(department=dept_id,
                                                                                number=course_id).credits
+                if requirement_name == "Depth":
+                    cs_requirement_nums["Total CS"][0] += 1
+                    cs_requirement_nums["Total CS"][1] += Course.objects.get(department=dept_id,
+                                                                                   number=course_id).credits
+                elif requirement_name == "Breadth":
+                    cs_requirement_nums["Total CS"][0] += 1
+                    cs_requirement_nums["Total CS"][1] += Course.objects.get(department=dept_id,
+                                                                            number=course_id).credits
+                elif requirement_name == "Core":
+                    cs_requirement_nums["Total CS"][0] += 1
+                    cs_requirement_nums["Total CS"][1] += Course.objects.get(department=dept_id,
+                                                                            number=course_id).credits
+                elif requirement_name == "Technical Elective Group 1":
+                    cs_requirement_nums["Total CS"][0] += 1
+                    cs_requirement_nums["Total CS"][1] += Course.objects.get(department=dept_id,
+                                                                             number=course_id).credits
+
             cs_requirement_nums["Total Credits"][1] += 3
     is_fulfilled = {}
     for requirement in degreeRequirements.keys():
