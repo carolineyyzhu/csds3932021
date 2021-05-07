@@ -1,15 +1,15 @@
 import unittest
 from django.test import TestCase, Client
-from CSB.views import checkRequirements
+from CSB.views import TESTcheckRequirements
 from django.urls import reverse
 
 
 class TestRC(unittest.TestCase):
     def test_checkRequirements(self):
         classes = []
-        self.assertEqual(checkRequirements(classes),
-                         (False,
-                          ["Total CS Credits", "Total CS Courses", "Core Courses", "Breadth Courses", "Depth Courses"]))
+        valid = TESTcheckRequirements(classes, 1, "software engineering")[0]
+        self.assertEqual(valid, True)
+        #'Depth', 'Breadth', 'SAGES', 'TechnicalElectiveGroup1', 'TotalCS', 'TotalCredits', 'GeneralBreadth', 'Core', 'Engineering'))
 
 
 class TestViews(TestCase):

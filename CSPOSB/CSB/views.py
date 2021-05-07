@@ -6,8 +6,8 @@ from .models import Course, Fulfills, Requirement, Requires, Degree
 
 # Create your views here.
 def index(request):
-    TESTcheckRequirements(['CSDS 448', 'CSDS 499', 'CSDS 341', 'CSDS 440', 'CSDS 435', 'MATH 408'], 1,
-                          "software engineering")
+    classes=[]
+    print(TESTcheckRequirements(classes, 1, "software engineering"))
     context = {}
     return render(request, 'index.html', context)
 
@@ -24,7 +24,7 @@ def posb(request):
     for courses in breadthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department + " " +str(courses.number)
+        temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
     breadthToHTML1 = [cid, name, numberDept]
     cid = []
@@ -34,42 +34,48 @@ def posb(request):
 
     # Depth
     area = []
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Software Engineering")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1,
+                                                                fulfills__concentration="Software Engineering")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
         area.append("Software Engineering")
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Algorithms and Theory")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1,
+                                                                fulfills__concentration="Algorithms and Theory")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
         area.append("Algorithms and Theory")
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Computer Systems, Networks, and Security")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1,
+                                                                fulfills__concentration="Computer Systems, Networks, and Security")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
         area.append("Computer Systems, Networks, and Security")
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Databases and Data Mining")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1,
+                                                                fulfills__concentration="Databases and Data Mining")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
         area.append("Databases and Data Mining")
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Bioinformatics")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1,
+                                                                fulfills__concentration="Bioinformatics")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
         area.append("Bioinformatics")
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Artificial Intelligence")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1,
+                                                                fulfills__concentration="Artificial Intelligence")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
@@ -87,7 +93,7 @@ def posb(request):
     for courses in coreClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department +" " + str(courses.number)
+        temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
     coreToHTML1 = [cid, name, numberDept]
     cid = []
@@ -100,7 +106,7 @@ def posb(request):
     for courses in generalBreadthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department +" " + str(courses.number)
+        temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
     generalBreadthToHTML1 = [cid, name, numberDept]
     cid = []
@@ -128,7 +134,8 @@ def posb(request):
     cid = []
     name = []
     numberDept = []
-    techElectiveToHTML = list(zip(techElectiveToHTML1[0], techElectiveToHTML1[1], techElectiveToHTML1[2], techElectiveToHTML1[3]))
+    techElectiveToHTML = list(
+        zip(techElectiveToHTML1[0], techElectiveToHTML1[1], techElectiveToHTML1[2], techElectiveToHTML1[3]))
 
     # Engineering
     engineeringClasses = Course.objects.all().select_related().filter(fulfills__rid=10)
@@ -148,7 +155,7 @@ def posb(request):
     for courses in sagesClasses:
         cid.append(courses.cid)
         name.append(courses.name)
-        temp = courses.department + " " +str(courses.number)
+        temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
     sagesToHTML1 = [cid, name, numberDept]
     sagesToHTML = zip(sagesToHTML1[0], sagesToHTML1[1], sagesToHTML1[2])
@@ -174,7 +181,6 @@ def posb(request):
         names = data.getlist('Name')
         degree = data.get('Degree')
 
-
         toDelete = []
         removeEmpty = []
         for i in range(0, len(classes)):
@@ -191,9 +197,8 @@ def posb(request):
             semester.pop(toDelete[index])
             year.pop(toDelete[index])
             classes.pop(toDelete[index])
+            names.pop(toDelete[index])
 
-        print(len(names))
-        print(len(classes))
 
         for i in range(0, len(classes)):
             if semester[i] == "spring":
@@ -274,42 +279,48 @@ def rchecker(request):
 
     # Depth
     area = []
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Software Engineering")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1,
+                                                                fulfills__concentration="Software Engineering")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
         area.append("Software Engineering")
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Algorithms and Theory")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1,
+                                                                fulfills__concentration="Algorithms and Theory")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
         area.append("Algorithms and Theory")
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Computer Systems, Networks, and Security")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1,
+                                                                fulfills__concentration="Computer Systems, Networks, and Security")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
         area.append("Computer Systems, Networks, and Security")
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Databases and Data Mining")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1,
+                                                                fulfills__concentration="Databases and Data Mining")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
         area.append("Databases and Data Mining")
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Bioinformatics")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1,
+                                                                fulfills__concentration="Bioinformatics")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
         temp = courses.department + " " + str(courses.number)
         numberDept.append(temp)
         area.append("Bioinformatics")
-    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1, fulfills__concentration="Artificial Intelligence")
+    depthClasses = Course.objects.all().select_related().filter(fulfills__rid=1,
+                                                                fulfills__concentration="Artificial Intelligence")
     for courses in depthClasses:
         cid.append(courses.cid)
         name.append(courses.name)
@@ -368,7 +379,8 @@ def rchecker(request):
     cid = []
     name = []
     numberDept = []
-    techElectiveToHTML = list(zip(techElectiveToHTML1[0], techElectiveToHTML1[1], techElectiveToHTML1[2], techElectiveToHTML1[3]))
+    techElectiveToHTML = list(
+        zip(techElectiveToHTML1[0], techElectiveToHTML1[1], techElectiveToHTML1[2], techElectiveToHTML1[3]))
 
     # Engineering
     engineeringClasses = Course.objects.all().select_related().filter(fulfills__rid=10)
@@ -437,69 +449,69 @@ def rchecker(request):
         return render(request, 'RChecker.html', context)
 
 
-def checkRequirements(classes):
-    while ('empty' in classes):
-        classes.remove('empty')
-
-    # TODO: Get the actual value of the depth area
-    # TODO: Add group 1 and group 2 to database
-    depth_area = "Software Engineering"
-    are_reqs_fulfilled = True
-    missing_reqs = []
-
-    cs_requirement_nums = {"total_cs_credits": 0, "total_cs_courses": 0, "core_courses": 0, "breadth_courses": 0,
-                           "depth_courses": 0, "tech_group_1": 0, "tech_group_2": 0}
-    can_be_counted = {"depth": False, "breadth": False, "tech-elective": False}
-
-    for course in classes:
-        dept_id = course[0:4]
-        course_id = course[-3:]
-
-        if Course.objects.filter(department=dept_id, number=course_id).exists():
-            cs_requirement_nums["tech_group_1"] += 1
-
-        if dept_id == "CSDS" and Course.objects.filter(department=dept_id, number=course_id).exists():
-            cs_requirement_nums["total_cs_credits"] += Course.objects.get(department=dept_id, number=course_id).credits
-            cs_requirement_nums["total_cs_courses"] += 1
-
-        course_name = Course.objects.get(department=dept_id, number=course_id).cid
-        # TODO: make sure that this is the same as the depth from above
-        can_be_counted["depth"] = Fulfills.objects.filter(cid=course_name, rid=1).exists()
-        can_be_counted["breadth"] = Fulfills.objects.filter(cid=course_name, rid=2).exists()
-
-        if can_be_counted["depth"]:
-            cs_requirement_nums["depth_courses"] += 1
-        if can_be_counted["breadth"]:
-            cs_requirement_nums["breadth_courses"] += 1
-        # TODO: Fulfills needs classes that can be counted toward the tech electives
-        # elif not can_be_counted["depth"]:
-
-    is_fulfilled = {"is_cs_credits_fulfilled": cs_requirement_nums["total_cs_credits"] > 63,
-                    "is_cs_courses_fulfilled": cs_requirement_nums["total_cs_courses"] > 20,
-                    "is_core_fulfilled": cs_requirement_nums["core_courses"] > 6,
-                    "is_breadth_fulfilled": cs_requirement_nums["breadth_courses"] > 5,
-                    "is_depth_fulfilled": cs_requirement_nums["depth_courses"] > 4,
-                    "is_tech_fulfilled": cs_requirement_nums["tech_group_1"] + cs_requirement_nums[
-                        "tech_group_2"] <= 6 and cs_requirement_nums["tech_group_2"] <= 2}
-
-    if not is_fulfilled["is_cs_credits_fulfilled"]:
-        missing_reqs.append("Total CS Credits")
-    if not is_fulfilled["is_cs_courses_fulfilled"]:
-        missing_reqs.append("Total CS Courses")
-        # TODO: display all technical electives to fulfill this requirement
-    if not is_fulfilled["is_core_fulfilled"]:
-        missing_reqs.append("Core Courses")
-    if not is_fulfilled["is_breadth_fulfilled"]:
-        missing_reqs.append("Breadth Courses")
-    if not is_fulfilled["is_depth_fulfilled"]:
-        missing_reqs.append("Depth Courses")
-
-    print("missing_reqs" + str(missing_reqs))
-
-    if not all(value for value in is_fulfilled.values()):
-        are_reqs_fulfilled = False
-
-    return are_reqs_fulfilled, missing_reqs
+# def checkRequirements(classes):
+#     while ('empty' in classes):
+#         classes.remove('empty')
+#
+#     # TODO: Get the actual value of the depth area
+#     # TODO: Add group 1 and group 2 to database
+#     depth_area = "Software Engineering"
+#     are_reqs_fulfilled = True
+#     missing_reqs = []
+#
+#     cs_requirement_nums = {"total_cs_credits": 0, "total_cs_courses": 0, "core_courses": 0, "breadth_courses": 0,
+#                            "depth_courses": 0, "tech_group_1": 0, "tech_group_2": 0}
+#     can_be_counted = {"depth": False, "breadth": False, "tech-elective": False}
+#
+#     for course in classes:
+#         dept_id = course[0:4]
+#         course_id = course[-3:]
+#
+#         if Course.objects.filter(department=dept_id, number=course_id).exists():
+#             cs_requirement_nums["tech_group_1"] += 1
+#
+#         if dept_id == "CSDS" and Course.objects.filter(department=dept_id, number=course_id).exists():
+#             cs_requirement_nums["total_cs_credits"] += Course.objects.get(department=dept_id, number=course_id).credits
+#             cs_requirement_nums["total_cs_courses"] += 1
+#
+#         course_name = Course.objects.get(department=dept_id, number=course_id).cid
+#         # TODO: make sure that this is the same as the depth from above
+#         can_be_counted["depth"] = Fulfills.objects.filter(cid=course_name, rid=1).exists()
+#         can_be_counted["breadth"] = Fulfills.objects.filter(cid=course_name, rid=2).exists()
+#
+#         if can_be_counted["depth"]:
+#             cs_requirement_nums["depth_courses"] += 1
+#         if can_be_counted["breadth"]:
+#             cs_requirement_nums["breadth_courses"] += 1
+#         # TODO: Fulfills needs classes that can be counted toward the tech electives
+#         # elif not can_be_counted["depth"]:
+#
+#     is_fulfilled = {"is_cs_credits_fulfilled": cs_requirement_nums["total_cs_credits"] > 63,
+#                     "is_cs_courses_fulfilled": cs_requirement_nums["total_cs_courses"] > 20,
+#                     "is_core_fulfilled": cs_requirement_nums["core_courses"] > 6,
+#                     "is_breadth_fulfilled": cs_requirement_nums["breadth_courses"] > 5,
+#                     "is_depth_fulfilled": cs_requirement_nums["depth_courses"] > 4,
+#                     "is_tech_fulfilled": cs_requirement_nums["tech_group_1"] + cs_requirement_nums[
+#                         "tech_group_2"] <= 6 and cs_requirement_nums["tech_group_2"] <= 2}
+#
+#     if not is_fulfilled["is_cs_credits_fulfilled"]:
+#         missing_reqs.append("Total CS Credits")
+#     if not is_fulfilled["is_cs_courses_fulfilled"]:
+#         missing_reqs.append("Total CS Courses")
+#         # TODO: display all technical electives to fulfill this requirement
+#     if not is_fulfilled["is_core_fulfilled"]:
+#         missing_reqs.append("Core Courses")
+#     if not is_fulfilled["is_breadth_fulfilled"]:
+#         missing_reqs.append("Breadth Courses")
+#     if not is_fulfilled["is_depth_fulfilled"]:
+#         missing_reqs.append("Depth Courses")
+#
+#     print("missing_reqs" + str(missing_reqs))
+#
+#     if not all(value for value in is_fulfilled.values()):
+#         are_reqs_fulfilled = False
+#
+#     return are_reqs_fulfilled, missing_reqs
 
 
 def TESTcheckRequirements(classes, degree, depth):
