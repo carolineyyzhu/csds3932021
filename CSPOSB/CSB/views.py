@@ -6,6 +6,7 @@ from .models import Course, Fulfills, Requirement, Requires, Degree
 
 # Create your views here.
 def index(request):
+    TESTcheckRequirements(['CSDS 448', 'CSDS 499', 'CSDS 341', 'CSDS 440', 'CSDS 435', 'MATH 408'], 1, "software engineering")
     context = {}
     return render(request, 'index.html', context)
 
@@ -323,7 +324,8 @@ def rchecker(request):
     else:
         context = {"generalBreadthClasses": generalBreadthToHTML, "coreClasses": coreToHTML,
                    "breadthClasses": breadthToHTML, "depthClasses": depthToHTML, "sagesClasses": sagesToHTML,
-                   "techElectiveClasses": techElectiveToHTML, "engineeringClasses": engineeringToHTML, "degrees": degreeToHTML}
+                   "techElectiveClasses": techElectiveToHTML, "engineeringClasses": engineeringToHTML,
+                   "degrees": degreeToHTML}
         return render(request, 'RChecker.html', context)
 
 
@@ -390,3 +392,53 @@ def checkRequirements(classes):
         are_reqs_fulfilled = False
 
     return are_reqs_fulfilled, missing_reqs
+
+
+def TESTcheckRequirements(classes, degree, depth):
+    while ('empty' in classes):
+        classes.remove('empty')
+
+    requires = Requires.objects.all().filter(did=degree)
+    degreeRequirements = {}
+    for requirement in requires:
+        temp = []
+        temp.append(requirement.quantity)
+        temp.append(requirement.credits)
+        degreeRequirements[str(requirement.rid)] = temp
+    # TODO: Get the actual value of the depth area
+    # TODO: Add group 1 and group 2 to database
+    depth_area = depth
+    are_reqs_fulfilled = True
+    missing_reqs = []
+
+    cs_requirement_nums = {req: [0,0] for req in degreeRequirements.keys()}
+    can_be_counted = {"depth": False, "breadth": False, "tech-elective": False}
+
+    for course in classes:
+        dept_id = course[0:4]
+        course_id = course[5:8]
+        course_name = Course.objects.get(department=dept_id, number=course_id).cid
+        fulfills = Fulfills.objects.all().filter(cid=course_name)
+        for fulfill in fulfills:
+            x = fulfill.rid
+            requirement_name = Requirement.objects.get(name=x).name
+            if requirement_name in cs_requirement_nums:
+                cs_requirement_nums[requirement_name][0] += 1
+                cs_requirement_nums[requirement_name][1] += Course.objects.get(department=dept_id, number=course_id).credits
+            cs_requirement_nums["Total Credits"][1] += 3
+    is_fulfilled = {}
+    for requirement in degreeRequirements.keys():
+        name = requirement.replace(" ", "")
+        is_fulfilled[name + "_is_fulfilled"] = cs_requirement_nums[requirement][1] >= degreeRequirements[requirement][1] and cs_requirement_nums[requirement][0] >= degreeRequirements[requirement][0]
+
+    for fulfilled in is_fulfilled.keys():
+        if is_fulfilled[fulfilled] == False:
+            missing_reqs.append(fulfilled)
+
+
+    print("missing_reqs" + str(missing_reqs))
+
+    if not all(value for value in is_fulfilled.values()):
+        are_reqs_fulfilled = False
+    return are_reqs_fulfilled, missing_reqs
+
