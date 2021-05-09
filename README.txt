@@ -7,7 +7,7 @@ schedule fulfills graduation requirements. The final feature allows for a studen
 All of the code needed to run the CSPOSB project is found in the /CSPOSB/ directory.
 In the /CSPOSB/ directory, the /CSB/ directory contains the python code that runs the application.
 In this directory the 'urls.py' file defines the urls used for the project, the 'models.py' file defines the sqlite database used for the project, and the 'views.py' file interfaces with the database and determines what page to show and with what information.
-The files used for testing are found in /csds3932021/CSPOSB/CSPOSB/tests/.
+The files used for testing are found in /csds3932021/CSPOSB/CSPOSB/tests/. The test are in both pythons standard unittesting library and the Django testing library. The unittesting library tests the requirement checking function while the Django testing tests the models and individual website pages. These tests have a code coverage of 58%.
 /csds3932021/CSPOSB/templates/ contains all of our html files used in the application.
 The css style sheet can be found in /csds3932021/CSPOSB/static/css/.
 The database file is found in /csds3932021/CSPOSB/ as the 'db.sqlite3' file, but for aa better experience using the database use the admin page.
